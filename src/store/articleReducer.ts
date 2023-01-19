@@ -8,6 +8,7 @@ const initialState: articleState = {
   error: null,
   loading: false,
   article: [],
+  id: 0
 } 
 
 export const getArticle = createAsyncThunk(
@@ -33,14 +34,18 @@ export const getArticle = createAsyncThunk(
 );
 console.log(getArticle())
 export const articleSlice = createSlice({
-  name: "lists",
+  name: "articles",
   initialState,
   reducers: {
     addArticles: (state, action) => {
       state.loading = false;
       state.articles = action.payload;
+    },
+    addArticle: (state, action) =>{
+      state.id = action.payload;
+      state.article = state.articles.filter(el=> el.id === action.payload);
     }
   }
 });
-export const { addArticles } = articleSlice.actions;
+export const { addArticles, addArticle } = articleSlice.actions;
 export default articleSlice.reducer;

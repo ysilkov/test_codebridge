@@ -26,6 +26,7 @@ export type Articles = {
      articles: Array<Articles>,
      error: null,
      loading: boolean,
-     article: Array<Articles>
+     article: Array<Articles>,
+     id: number
    }
-   
+   export const month = ["January", "February", "March","April", "May", "June", "July", "August", "September", "October", "November", "December"]

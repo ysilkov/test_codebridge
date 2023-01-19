@@ -1,22 +1,22 @@
 import React from 'react';
-import { useSelector } from 'react-redux/es/exports';
-import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { useSelector } from 'react-redux';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css';
-import { getArticle } from './store/articleReducer';
-import { AppDispatch, RootState } from './store/store';
+import ArticleDetails from './components/ArticleDetails';
+import HomePage from './components/HomePage';
+import { RootState } from './store/store';
 
-function App() {
-const dispatch: AppDispatch = useDispatch()
-  const articles = useSelector((state: RootState)=>state.articles.articles)
-  console.log(articles)
-  const giveMeArticle =() =>{
-    dispatch(getArticle())
+
+  function App() {
+    const id = useSelector((state: RootState)=>state.articles.id)
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path={`/article/${id}`} element={<ArticleDetails />} />
+        </Routes>
+      </BrowserRouter>
+    );
   }
-  return (
-    <div className="App">
-      <button onClick={()=>giveMeArticle()}>Submit</button>
-    </div>
-  );
-}
-
+  
 export default App;
