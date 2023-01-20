@@ -7,7 +7,7 @@ import { addArticle, getArticle } from '../store/articleReducer';
 import { AppDispatch, RootState } from '../store/store';
 import calendar from "../images/calendar.png";
 import arrowRight from "../images/arrowRight.png";
-import style from "./HomePage.module.css" 
+import style from "./HomePage.module.css";
 
 const HomePage = ()=>{
 const [inputValue, setInputValue] = useState(""); 
@@ -27,11 +27,11 @@ const dispatch: AppDispatch = useDispatch()
    return el.title
   }
   if(!el.title.toLowerCase().includes(inputValue.toLowerCase()) && el.summary.toLowerCase().includes(inputValue.toLowerCase())){
-    console.log(el.summary)
-    return <p className={style.hello}>{el.summary}</p>
+    return el.summary
 }
 });
-
+const replacement = '<b>'+ inputValue +'</b>';
+const regexp = RegExp(`${inputValue}`, 'gi');
   return (
     <div>
       <form>
@@ -46,7 +46,7 @@ const dispatch: AppDispatch = useDispatch()
        <img src={article.imageUrl} alt="Picture Article" width="100px" height="100px"/>
        <span>
         <img src={calendar} alt='Calendar' />
-       <p>{month[new Date(article.publishedAt).getMonth()] + " " + 
+       <p className={style.hello}>{month[new Date(article.publishedAt).getMonth()] + " " + 
        (new Date(article.publishedAt).getDate() === 1 || 
        new Date(article.publishedAt).getDate() === 21 || 
        new Date(article.publishedAt).getDate() === 31 ? new Date(article.publishedAt).getDate() + "st," :
@@ -57,8 +57,8 @@ const dispatch: AppDispatch = useDispatch()
        new Date(article.publishedAt).getDate() + "th,") + " " + new Date(article.publishedAt).getFullYear() }
        </p>
        </span>
-      <h1>{article.title}</h1>
-      <p>{article.summary}</p>
+      <h1>{inputValue.length ===0 ? <h1>{article.title}</h1> : <h1 dangerouslySetInnerHTML={{__html:article.title.replace(regexp, replacement)}}></h1>}</h1>
+      <p>{inputValue.length ===0 ? <p>{article.summary}</p> : <p dangerouslySetInnerHTML={{__html:article.summary.replace(regexp, replacement)}}></p>}</p>
       <span>
       <Link to={`/article/${article.id}`} onClick={() => getArticleId(article.id)}>Read more</Link>
       <img src={arrowRight} alt="Arrow Right"/>
