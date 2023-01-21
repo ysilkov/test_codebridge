@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/exports";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { Link } from "react-router-dom";
-import { month } from "../helper";
-import { addArticle, getArticle } from "../store/articleReducer";
-import { AppDispatch, RootState } from "../store/store";
+import { month } from "../../helper";
+import { addArticle, getArticle } from "../../store/articleReducer";
+import { AppDispatch, RootState } from "../../store/store";
 import calendar from "../images/calendar.png";
 import arrowRight from "../images/arrowRight.png";
 import style from "./HomePage.module.css";
@@ -39,11 +39,7 @@ const HomePage = () => {
     <div className={style.block_articles}>
       <form className={style.block_articles_form}>
         <p className={style.form_name}>Filter by keywords</p>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleChange}
-        />
+        <input type="text" value={inputValue} onChange={handleChange} />
       </form>
       <p>Results: {filterArticles.length}</p>
       <hr />
