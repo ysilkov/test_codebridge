@@ -13,7 +13,7 @@ input {
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, 0.05);
   color: #363636;
   padding-left: 60px;
-  background-image: url(../images/search.png);
+  background-image: url(../../images/search.png);
   background-repeat: no-repeat;
   background-position: 15px 15px;
 }
@@ -40,6 +40,7 @@ hr {
   border-radius: 10px;
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, 0.05);
   offset: 0, 8px;
+  height: auto;
 }
 .container_articles {
   display: grid;
@@ -63,21 +64,22 @@ hr {
   width: 20px;
 }
 .articles_text {
-  margin-left: 20px;
-  height: 243px;
+  margin: 0 20px 25px 20px;
+  height: auto;
 }
-.articles_text > p {
+.articles_text > span > p {
   overflow: hidden;
+  text-overflow: ellipsis;
   height: 96px;
   font-size: 16px;
   font-weight: 400;
 }
-h1 {
+.articles_text > span > h1 {
   font-size: 24px;
   width: 340px;
   font-weight: 400;
   margin-bottom: 20px;
-  height: 58px;
+  height: 110px;
 }
 .articles_data > p {
   font-size: 16px;
@@ -85,7 +87,10 @@ h1 {
   font-weight: 400;
 }
 .arrowRight {
+  position: relative;
   cursor: pointer;
+  left: 0;
+  bottom: 0;
 }
 
 .arrowRight > a {
@@ -93,4 +98,8 @@ h1 {
   color: #363636;
   font-weight: 700;
   margin-right: 10px;
+}
+a > img {
+  padding-left: 6px;
+  width: 12px;
 }

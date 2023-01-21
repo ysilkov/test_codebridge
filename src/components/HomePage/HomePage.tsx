@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { month } from "../../helper";
 import { addArticle, getArticle } from "../../store/articleReducer";
 import { AppDispatch, RootState } from "../../store/store";
-import calendar from "../images/calendar.png";
-import arrowRight from "../images/arrowRight.png";
+import calendar from "../../images/calendar.png";
+import arrowRight from "../../images/arrowRight.png";
 import style from "./HomePage.module.css";
 
 const HomePage = () => {
@@ -75,7 +75,7 @@ const HomePage = () => {
                 </p>
               </div>
               <div className={style.articles_text}>
-                <h1>
+                <span>
                   {inputValue.length === 0 ? (
                     <h1>{article.title}</h1>
                   ) : (
@@ -85,29 +85,26 @@ const HomePage = () => {
                       }}
                     ></h1>
                   )}
-                </h1>
-                <p>
+                </span>
+                <span>
                   {inputValue.length === 0 ? (
-                    <p className={style.articles_text_summary}>
-                      {article.summary}
-                    </p>
+                    <p>{article.summary}</p>
                   ) : (
                     <p
                       dangerouslySetInnerHTML={{
                         __html: article.summary.replace(regexp, replacement),
                       }}
-                      className={style.articles_text_summary}
                     ></p>
                   )}
-                </p>
+                </span>
                 <span className={style.arrowRight}>
                   <Link
                     to={`/article/${article.id}`}
                     onClick={() => getArticleId(article.id)}
                   >
                     Read more
+                    <img src={arrowRight} alt="Arrow Right" />
                   </Link>
-                  <img src={arrowRight} alt="Arrow Right" />
                 </span>
               </div>
             </div>
